@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useCallback} from 'react';
 import { createStage } from '../gameHelpers';
 // Components
 import Stage from './Stage';
@@ -18,6 +18,7 @@ const Tetris = () => {
     
     //tiempo de caida que dependerá del nivel que se encuentre el jugador
     const [dropTime , setDropTime] = useState(null);
+   
     //establece el fin del juego que nos indicará si el juego a terminado o no
     const [gameOver, setGameOver]= useState(false);
     
@@ -34,6 +35,19 @@ const Tetris = () => {
         updatePlayerPos({ x: dir, y: 0 });
       }
     };
+
+
+    const pauseDropTime = ()=>{
+      
+      if(dropTime !== null){
+        setDropTime(null)
+      }else {
+        setDropTime(1000 * level)
+      }
+     
+  
+    }
+  
   
 //funcion para el boton de start
 const startGame = () => {
@@ -44,7 +58,7 @@ const startGame = () => {
   resetPlayer();
   setGameOver(false);
   setScore(0)
-  setLevel(0)
+  setLevel(1)
 };
 
 const drop = () => {
@@ -80,7 +94,6 @@ const KeyUp=({keyCode})=>{
 
   const dropPlayer = () => {
     console.log("interval off")
-    setDropTime(null);
     drop();
   };
 
@@ -94,6 +107,8 @@ const KeyUp=({keyCode})=>{
         dropPlayer(); //mueve hacia abajo
       }else if (keyCode === 38) {
         playerRotate(stage, 1);
+      }else if(keyCode === 67){
+        pauseDropTime()
       }
     }
   };
@@ -112,14 +127,14 @@ const KeyUp=({keyCode})=>{
 
       {gameOver?(
         <Display gameOver={gameOver} text1="Game Over"/>
-      ): (
+      ): ("")}
         <div>
           <Display text1="Score : " text2={score}/>
           <Display text1="Rows : " text2={rows}/>
           <Display text1="Level : " text2={level}/>
         </div>
+        {dropTime === null ? (<Display text1={"Pause"}/>):("")}
 
-)}
         <StartButton callback={startGame} />
       </aside>
      
