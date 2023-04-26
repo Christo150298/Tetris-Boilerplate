@@ -17,8 +17,7 @@ function Chat() {
 
   useEffect(() => {
     if (buttonStatus === true) {
-      const socket = io("localhost:3245/"
-      );
+      const socket = io("84.121.62.4:3245/");
 
       setSocketInstance(socket);
 
