@@ -15,7 +15,7 @@ import { useInterval } from '../js/hooks/useInterval';
 import { useGameStatus } from '../js/hooks/useGameStatus';
 
 const Tetris = () => {
-    
+    const [registro, setRegistro]=useState({});
     //tiempo de caida que dependerá del nivel que se encuentre el jugador
     const [dropTime , setDropTime] = useState(null);
    
@@ -48,9 +48,25 @@ const Tetris = () => {
   
     }
   
+  const registrarJugada=()=>{
+
+     
+      const newRegistro={
+        score:score,
+        rows:rows,
+        level: level,
+        
+      }
+      console.log(newRegistro)
+      setRegistro(newRegistro)
+      console.log(registro)
+      
+    
+  } 
   
 //funcion para el boton de start
 const startGame = () => {
+  registrarJugada()
   // Reset everything
   setStage(createStage());
   setDropTime(1000);
@@ -64,7 +80,7 @@ const startGame = () => {
 const drop = () => {
 
   // Increase level when player has cleared 10 rows
-  if (rows > (level + 1) * 10) {
+  if (rows > (level + 1) * 5) {
     setLevel(prev => prev + 1);
     // Also increase speed
     setDropTime(1000 / (level + 1) + 200);
@@ -93,7 +109,6 @@ const KeyUp=({keyCode})=>{
 
 
   const dropPlayer = () => {
-    console.log("interval off")
     drop();
   };
 
@@ -118,7 +133,7 @@ const KeyUp=({keyCode})=>{
   },dropTime)
 
 
-  console.log('re-render')
+ 
     return (
     <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e=> move(e)} onKeyUp={KeyUp}>
         <StyledTetris>
