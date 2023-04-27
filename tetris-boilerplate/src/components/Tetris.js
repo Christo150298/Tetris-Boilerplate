@@ -101,7 +101,7 @@ const startGame = () => {
 const drop = () => {
 
   // Increase level when player has cleared 10 rows
-  if (rows > (level + 1) * 10) {
+  if (rows > level  * 10) {
     setLevel(prev => prev + 1);
     // Also increase speed
     setDropTime(1000 / (level + 1) + 200);
