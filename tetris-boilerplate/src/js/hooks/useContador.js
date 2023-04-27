@@ -27,7 +27,9 @@ export const useContador =()=>{
     setOnOff("on")
     }
     
-
+const stop=()=>{
+    setOnOff(false)
+}
 
     const restore = () => {
         setSeg(0);
@@ -53,6 +55,6 @@ export const useContador =()=>{
 
 
     return[
-       seg, min, horas, onOff, setOnOff, start, restore
+       seg, min, horas, onOff, setOnOff, start, restore, stop
     ]
 }

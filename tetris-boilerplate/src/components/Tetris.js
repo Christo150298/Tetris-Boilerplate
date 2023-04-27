@@ -5,24 +5,26 @@ import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
 import { checkCollision } from '../gameHelpers';
-import Contador from './contador';
 
 //Stylos componentes
 import { StyledTetris, StyledTetrisWrapper } from './styles/StyledTetris';
-
+import Contador from './contador';
 //hooks
 import { usePlayer } from '../js/hooks/usePlayer';
 import { useStage } from '../js/hooks/useStage';
 import { useInterval } from '../js/hooks/useInterval';
 import { useGameStatus } from '../js/hooks/useGameStatus';
 import { useContador } from '../js/hooks/useContador';
+import useAppContext from '../js/store/context';
 const Tetris = () => {
+const {store, action}= useAppContext()
+const {registro, setRegistro , }=store
 
 const[ seg, min, horas, onOff, setOnOff, start, restore , stop]=useContador({});
 
 
 
-    const [registro, setRegistro]=useState({});
+   
     //tiempo de caida que dependerá del nivel que se encuentre el jugador
     const [dropTime , setDropTime] = useState(null);
    
@@ -52,10 +54,11 @@ const[ seg, min, horas, onOff, setOnOff, start, restore , stop]=useContador({});
       
       if(dropTime !== null){
         setDropTime(null)
+        stop()
       
       }else {
         setDropTime(1000 )
-        
+        start()
       }
      
   
@@ -63,21 +66,25 @@ const[ seg, min, horas, onOff, setOnOff, start, restore , stop]=useContador({});
   
   const registrarJugada=()=>{
 
-     
+     if(seg > 0){
       const newRegistro={
         score:score,
         rows:rows,
         level: level,
         time: {
-          horas,
-          min,
-          seg
+          horas: horas,
+           min : min,
+           seg: seg
         } 
       }
       console.log(newRegistro)
-      setRegistro(newRegistro)
+      setRegistro([...registro, newRegistro])
       console.log(registro)
       
+
+
+     }
+     
     
   } 
   
@@ -112,6 +119,7 @@ const drop = () => {
     // Game Over
     if (player.pos.y < 1) {
       console.log('GAME OVER!!!');
+      stop();
       setGameOver(true);
       setDropTime(null);
     }
