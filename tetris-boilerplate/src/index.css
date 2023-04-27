@@ -42,3 +42,9 @@ body {
 .card input{
   margin-top: 320px;
 }
+.stylesButonPlayer{
+  text-decoration: none;
+  color: black;
+
+  padding: 80px;
+}

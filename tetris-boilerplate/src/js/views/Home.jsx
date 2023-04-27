@@ -8,8 +8,19 @@ const Home = () => {
     return(
         <>
         <button onClick={actions.handleTheme}>Escucha Nuestro Tema</button>
-       <Link to="/singlePlayer">Single Player</Link>
-       <Link to="/multiPlayer">Multi Player</Link>
+       <div className="container">
+        <div className="  d-flex justify-content-center p-5 ">
+        <button className="m-3">
+        <Link to="/singlePlayer" className="stylesButonPlayer ">Single Player</Link>
+        </button>
+        <button className="m-3">
+       <Link to="/multiPlayer" className="stylesButonPlayer">Multi Player</Link>
+       </button>
+        </div>
+       
+
+       </div>
+      
     </>);
 
 };
