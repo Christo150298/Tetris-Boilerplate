@@ -15,7 +15,7 @@ export const useContador =()=>{
     }
 
     useEffect(()=>{
-        if(onOff){
+        if(onOff== "on"){
             intervalId = setInterval(counterOne, 1000);  
         }
         return () => clearInterval(intervalId);
@@ -24,7 +24,7 @@ export const useContador =()=>{
    
    
     const start = ()=>{
-    setOnOff(!onOff)
+    setOnOff("on")
     }
     
 

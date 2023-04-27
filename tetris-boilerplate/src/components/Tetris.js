@@ -18,7 +18,7 @@ import { useGameStatus } from '../js/hooks/useGameStatus';
 import { useContador } from '../js/hooks/useContador';
 const Tetris = () => {
 
-const[ seg, min, horas, onOff, setOnOff, start, restore]=useContador({});
+const[ seg, min, horas, onOff, setOnOff, start, restore , stop]=useContador({});
 
 
 
@@ -36,9 +36,7 @@ const[ seg, min, horas, onOff, setOnOff, start, restore]=useContador({});
   const [score, setScore, rows, setRows, level, setLevel ] = useGameStatus(rowCleared);
   
   
-  
-  
-  
+
   //
   
   //coje la direccion
@@ -68,7 +66,11 @@ const[ seg, min, horas, onOff, setOnOff, start, restore]=useContador({});
         score:score,
         rows:rows,
         level: level,
-        
+        time: {
+          horas,
+          min,
+          seg
+        } 
       }
       console.log(newRegistro)
       setRegistro(newRegistro)
@@ -79,23 +81,25 @@ const[ seg, min, horas, onOff, setOnOff, start, restore]=useContador({});
   
 //funcion para el boton de start
 const startGame = () => {
-  start()
   registrarJugada()
+
+  restore()
+  start()
+ 
   // Reset everything
   setStage(createStage());
   setDropTime(1000);
-  console.log("interval on")
   resetPlayer();
-  setGameOver(false);
-  setRows(0)
-  setScore(0)
-  setLevel(1)
+  setScore(0);
+    setLevel(0);
+    setRows(0);
+    setGameOver(false);
 };
 
 const drop = () => {
 
   // Increase level when player has cleared 10 rows
-  if (rows > (level + 1) * 5) {
+  if (rows > (level + 1) * 10) {
     setLevel(prev => prev + 1);
     // Also increase speed
     setDropTime(1000 / (level + 1) + 200);
