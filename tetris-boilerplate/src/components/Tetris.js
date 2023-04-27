@@ -52,8 +52,10 @@ const[ seg, min, horas, onOff, setOnOff, start, restore , stop]=useContador({});
       
       if(dropTime !== null){
         setDropTime(null)
+      
       }else {
-        setDropTime(1000 * level)
+        setDropTime(1000 )
+        
       }
      
   

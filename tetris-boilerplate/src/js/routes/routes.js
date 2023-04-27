@@ -8,7 +8,8 @@ import Registro from "../views/Registro";
 import Instrucciones from "../views/Instrucciones";
 import Chat from "../server/Chat";
 import Controls from "../components/Controls";
-
+import SinglePlayer from "../views/SinglePlayer";
+import MultiPlayer from "../views/MultiPlayer";
 const routes = [
   {
     path: "/",
@@ -21,6 +22,14 @@ const routes = [
   {
     path:"/registro",
     element:<Registro />
+  },
+  {
+    path:"/singlePlayer",
+    element: <SinglePlayer/>
+  },
+  {
+    path:"/multiPlayer",
+    element: <MultiPlayer/>
   },
   {
     path:"/instrucciones",

@@ -1,17 +1,16 @@
 import React from "react";
 import useAppContext from "../store/context";
-import Tetris from "../../components/Tetris";
+import { Link } from "react-router-dom";
 const Home = () => {
     
     const {store,actions} = useAppContext()
 
     return(
         <>
-        <h1>{store.test}</h1>
         <button onClick={actions.handleTheme}>Escucha Nuestro Tema</button>
-        <Tetris />
-        </>
-    );
+       <Link to="/singlePlayer">Single Player</Link>
+       <Link to="/multiPlayer">Multi Player</Link>
+    </>);
 
 };
 
