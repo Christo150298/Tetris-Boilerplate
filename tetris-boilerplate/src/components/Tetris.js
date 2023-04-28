@@ -63,7 +63,7 @@ const[ seg, min, horas, onOff, setOnOff, start, restore , stop]=useContador({});
   
   const registrarJugada=()=>{
 
-     if(seg > 0){
+     if(score > 0 || rows > 0){
       const newRegistro={
         score:score,
         rows:rows,
@@ -72,7 +72,8 @@ const[ seg, min, horas, onOff, setOnOff, start, restore , stop]=useContador({});
           horas: horas,
            min : min,
            seg: seg
-        } 
+        }
+
       }
       console.log(newRegistro)
       setRegistro([...registro, newRegistro])

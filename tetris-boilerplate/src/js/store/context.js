@@ -10,11 +10,7 @@ export const ContextProvider = ({children}) => {
     const [registro, setRegistro]=useState([]);
     const[mejorPuntuacion , setMejorPuntuacion] = useState()
    
-
-
-
-
-
+    
 
     const handleTheme = () => {
         Tetris_Theme.play()
