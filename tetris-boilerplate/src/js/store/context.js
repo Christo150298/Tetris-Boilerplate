@@ -7,15 +7,7 @@ export const ContextProvider = ({children}) => {
 
     const [musicOn,SetMusicOn] = useState(false)
     const [test,setTest] = useState("Vacio")
-    const [registro, setRegistro]=useState([{
-        score:0,
-        rows:0,
-        level: 0,
-        time: {
-          horas: 0,
-           min : 0,
-           seg: 0
-    }}]);
+    const [registro, setRegistro]=useState([]);
     const[mejorPuntuacion , setMejorPuntuacion] = useState()
    
 
