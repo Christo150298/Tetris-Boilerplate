@@ -16,10 +16,9 @@ export const ContextProvider = ({children}) => {
            min : 0,
            seg: 0
     }}]);
-    const[mejorPuntuacion , setMejorPuntuacion] = useState(result[0])
+    const[mejorPuntuacion , setMejorPuntuacion] = useState()
    
 
-const result = registro.sort((a,b)=>{return b.score - a.score})
 
 
 

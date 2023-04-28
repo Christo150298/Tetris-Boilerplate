@@ -22,9 +22,6 @@ const {registro, setRegistro , }=store
 
 const[ seg, min, horas, onOff, setOnOff, start, restore , stop]=useContador({});
 
-
-
-   
     //tiempo de caida que dependerá del nivel que se encuentre el jugador
     const [dropTime , setDropTime] = useState(null);
    
@@ -110,7 +107,7 @@ const drop = () => {
   // Increase level when player has cleared 10 rows
   if (rows > level  * 10) {
     setLevel(prev => prev + 1);
-    // Also increase speed
+    // tambien aumenta la velocidad
     setDropTime(1000 / (level + 1) + 200);
   }
   if (!checkCollision(player, stage, { x: 0, y: 1 })) {
